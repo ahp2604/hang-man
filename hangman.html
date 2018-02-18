@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <!-- <script src="main.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+
+
+
+
+    <script type="text/javascript">
+
+
+        //create a word bank   var word with list of all the words
+        //create user input
+        //create number of guesses
+        //get the guess of the player
+        //confirm if guess is right or wrong
+        //if right, place the letter to the underscore
+        //if wrong, record the wrong guess
+        //Create a prompt for each question 
+
+        //counter
+
+        var wrongGuess = [];
+
+        var rightGuess = 0;
+
+        var guessLeft = 10;
+
+        // Create words bank
+        var words = ["ferrari", "toyota", "honda", "porsche", "bmw", "audi"];
+
+        var wordRandom = [];
+
+        var answerArray;
+        
+
+
+    function gameStart(){
+        //Randomize the words
+            wordRandom = words[Math.floor(Math.random() * words.length)];
+            console.log(wordRandom);
+
+            wrongGuess = [];
+
+            //answer array
+            answerArray = [];
+
+            for (i = 0; i < wordRandom.length; i++) {
+
+                answerArray.push("_");
+
+            rightGuess = 0;
+
+            guessLeft = 10;
+        }
+
+            console.log(answerArray);
+
+
+
+
+};
+
+
+            ////SCCORE TRACKING
+
+        function score() {
+
+                if (rightGuess === wordRandom.length) {
+
+                    alert("WIN!");
+                    gameStart();
+            }
+                else if (guessLeft === 0) {
+
+                    alert("Try again!");
+                    gameStart();
+
+                }
+
+    };
+
+
+
+        //WHEN PLAYER STARTS GUESSING
+
+        document.onkeyup = function (event) {
+            var userAnswer = event.key;
+            
+            if (wordRandom.indexOf(userAnswer) > -1) {
+
+                for (j = 0; j < wordRandom.length; j++) {
+               
+                    if (wordRandom[j] === userAnswer) {     
+
+                        
+                        answerArray[j] = userAnswer;
+
+                        rightGuess++;
+
+                        guessLeft--;
+                        console.log(answerArray);
+                        score();
+
+                    }
+
+
+                    
+
+                }
+
+            }
+            else {
+
+                wrongGuess.push(userAnswer);
+                guessLeft--;
+                console.log(wrongGuess);
+                score();
+            }
+
+
+};
+
+
+
+
+
+gameStart();
+
+
+
+
+
+    </script>
+</body>
+
+</html>
